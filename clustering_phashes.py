@@ -27,7 +27,7 @@ CLUSTERING_MIN_SAMPLES=5
 parser = OptionParser()
 parser.add_option("-p", "--phashes", dest='phashes', default='phashes.txt', help="file with phashes")
 parser.add_option("-d", "--distances", dest='distances', default='phashes-diffs.json',help="file with pairwise distances")
-parser.add_option("-m", "--matrix", dest='matrix', default='distance_matrix',help="distances in csr_matrix format")
+parser.add_option("-m", "--matrix", dest='matrix', default='distance_matrix.mat',help="distances in csr_matrix format")
 parser.add_option("-i", "--index", dest='index', default='index_images.p',help="dictionary that includes the mapping between images and index in distance matrix")
 parser.add_option("-o", "--output", dest='output', default='clustering_output.txt',help="file that includes clustering output")
 parser.add_option("-t", "--test", dest='test', default=False,help="If using test images")

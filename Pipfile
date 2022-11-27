@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+imagehash = "==3.5"
+tensorflow = "~=1.15"
+sklearn = "*"
+numpy = "*"
+protobuf = "~=3.20"
+matplotlib = "*"
+scikit-learn = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"

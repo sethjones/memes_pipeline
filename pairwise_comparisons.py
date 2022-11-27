@@ -504,8 +504,8 @@ def main(options, arguments):
         seek_queue_many(list(hashes_dic.keys()), hashes, outfile, blacklist, hashes_diff)
 
     else:
-
-        devices = ['/gpu:0', '/gpu:1']
+        print("Using GPU")
+        devices = ['/gpu:0']
         device = devices[int(options.device)]
 
         with tf.device(device):
