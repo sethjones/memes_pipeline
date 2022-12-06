@@ -1,3 +1,5 @@
+## Broken
+
 #!/usr/bin/env python
 '''
 This code is part of the publication "On the Origins of Memes by Means of Fringe Web Communities" at IMC 2018.
@@ -25,8 +27,8 @@ FLAGS = tf.app.flags.FLAGS
 DISTANCE_THRESHOLD = 10
 DEBUG = False
 
-config=tf.ConfigProto() #allow_soft_placement=True, log_device_placement=True
-#config.gpu_options.allow_growth=True
+config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=True) #allow_soft_placement=True, log_device_placement=True
+config.gpu_options.allow_growth=True
 config.intra_op_parallelism_threads = 44
 config.inter_op_parallelism_threads = 44
 

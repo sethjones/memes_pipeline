@@ -15,7 +15,7 @@ while getopts 'f:' flag; do
 done
 
 printf "Calculating pairwise comparisons..."
-python pairwise_comparisons.py --input $files -d 0
+python pairwise_comparisons.py --input $files --device '/gpu:0'
 
 # printf "Clustering pairwise..."
 # python clustering_phashes.py 

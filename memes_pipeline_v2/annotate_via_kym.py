@@ -22,6 +22,46 @@ import ast
 import tensorflow as tf
 import numpy as np
 
+# os.environ['CUDA_DIR'] = '/opt/cuda'
+os.environ['LD_LIBRARY_PATH'] = '/opt/TensorRT/TensorRT-8.5.1.7/lib'
+os.environ['XLA_FLAGS'] = '--xla_gpu_cuda_data_dir=/opt/cuda --xla_dump_to=logs/xla/generated'
+os.environ['TF_XLA_FLAGS'] = '--tf_xla_auto_jit=2 --tf_xla_cpu_global_jit --tf_xla_enable_xla_devices'
+# os.environ["CUDA_CACHE_DISABLE"] = "0"
+# os.environ["TF_GPU_THREAD_MODE"] = "gpu_private"
+# os.environ["TF_USE_CUDNN_BATCHNORM_SPATIAL_PERSISTENT"] = '1'
+# os.environ["TF_AUTOTUNE_THRESHOLD"] = "1"
+# os.environ['TF_ENABLE_CUBLAS_TENSOR_OP_MATH_FP32'] = '1'
+# os.environ['TF_ENABLE_CUDNN_TENSOR_OP_MATH_FP32'] = '1'
+# os.environ['TF_ENABLE_CUDNN_RNN_TENSOR_OP_MATH_FP32'] = '1'
+os.environ['CUDA_CACHE_DISABLE'] = '0'
+
+# os.environ['HOROVOD_GPU_ALLREDUCE'] = 'NCCL'
+
+# os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
+os.environ['TF_GPU_THREAD_MODE'] = 'gpu_private'
+os.environ['TF_GPU_THREAD_COUNT'] = '44'
+
+# os.environ['TF_USE_CUDNN_BATCHNORM_SPATIAL_PERSISTENT'] = '1'
+
+# os.environ['TF_ADJUST_HUE_FUSED'] = '1'
+# os.environ['TF_ADJUST_SATURATION_FUSED'] = '1'
+# os.environ['TF_ENABLE_WINOGRAD_NONFUSED'] = '1'
+
+# os.environ['TF_SYNC_ON_FINISH'] = '0'
+os.environ['TF_AUTOTUNE_THRESHOLD'] = '2'
+# os.environ['TF_DISABLE_NVTX_RANGES'] = '1'
+
+tf.compat.v1.disable_eager_execution()
+
+# Tensorboard Logging
+# log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+# tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
+
+# allow_soft_placement=True, log_device_placement=True
+config = tf.compat.v1.ConfigProto(
+    allow_soft_placement=True, log_device_placement=True)
+config.gpu_options.allow_growth = True
 
 DISTANCE_THRESHOLD = 8
 DEBUG = False
@@ -198,7 +238,7 @@ def seek_queue_many(ids_i, ids_j, hashes_i, hashes_j, outdir, blacklist, hashes_
     num_threads = 5
     batch_size = int(len_hashes/num_threads)+1
     total_tasks = len_hashes - len(blacklist)
-    pbar = tf.contrib.keras.utils.Progbar(total_tasks)
+    pbar = tf.keras.utils.Progbar(total_tasks)
 
     # are used to feed data into our queue
     queue_i = tf.compat.v1.placeholder(tf.int32, shape=[None])

@@ -7,12 +7,14 @@ name = "pypi"
 imagehash = "==3.5"
 sklearn = "*"
 numpy = "*"
-protobuf = "~=3.20"
+protobuf = "==3.20.3"
 matplotlib = "*"
 scikit-learn = "*"
-tensorflow = "*"
+tensorflow-gpu = "*"
+pycuda = "*"
+tensorrt = {path = "/opt/TensorRT/TensorRT-8.5.1.7/python/tensorrt-8.5.1.7-cp39-none-linux_x86_64.whl"}
 
 [dev-packages]
 
 [requires]
-python_version = "3.7"
+python_version = "3.9"
